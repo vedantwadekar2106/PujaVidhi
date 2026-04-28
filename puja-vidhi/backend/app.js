@@ -22,3 +22,7 @@ module.exports = app;
 const userRoutes = require("./routes/userRoutes");
 
 app.use("/api/users", userRoutes);
+
+const patrikaRoutes = require("./routes/patrikaRoutes");
+
+app.use("/api/patrika", patrikaRoutes);

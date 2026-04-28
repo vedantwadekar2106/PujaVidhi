@@ -46,3 +46,4 @@ const patrikaSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Patrika", patrikaSchema);
+

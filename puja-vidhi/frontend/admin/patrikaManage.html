@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Patrika Requests</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+<h1 class="text-2xl font-bold mb-4">📜 Patrika Requests</h1>
+
+<div id="list" class="grid gap-4"></div>
+
+<script>
+async function loadPatrika() {
+  const res = await fetch("http://localhost:5000/api/patrika");
+  const data = await res.json();
+
+  const list = document.getElementById("list");
+
+  if (!data.data.length) {
+    list.innerHTML = "No data found";
+    return;
+  }
+
+  list.innerHTML = data.data.map(p => `
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="font-bold text-lg">${p.name}</h2>
+      <p><b>Gender:</b> ${p.gender}</p>
+      <p><b>DOB:</b> ${new Date(p.dob).toLocaleDateString()}</p>
+      <p><b>Time:</b> ${p.tob}</p>
+      <p><b>Place:</b> ${p.place}</p>
+      <p class="text-sm text-gray-500">${new Date(p.createdAt).toLocaleString()}</p>
+    </div>
+  `).join("");
+}
+
+loadPatrika();
+</script>
+
+</body>
+</html>
